@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="finder" class="Symfony\Component\Finder\Finder">
+            <factory class="Anyt\FileSearchBundle\Finder\FinderFactory" method="createFinder"/>
+        </service>
+        <service id="file_search.finder_engine" class="Anyt\FileSearchBundle\Engine\FinderEngine">
+            <argument type="service" id="finder"/>
+        </service>
+        <service id="file_search.grep_engine" class="Anyt\FileSearchBundle\Engine\GrepEngine">
+        </service>
+        <service id="file_search.read_file_by_line_engine" class="Anyt\FileSearchBundle\Engine\ReadFileByLineEngine">
+        </service>
+        <service id="file_search.read_file_contents_engine"
+                 class="Anyt\FileSearchBundle\Engine\ReadFileContentsEngine">
+        </service>
+
+        <service id="file_search" class="Anyt\FileSearchBundle\FileSearch">
+            <argument type="service" id="file_search.engine"/>
+            <argument>%anyt_file_search.dir%</argument>
+        </service>
+    </services>
+</container>

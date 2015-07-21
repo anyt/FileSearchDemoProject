@@ -1,0 +1,3 @@
+anyt_file_search:
+    resource: "@AnytFileSearchBundle/Resources/config/routing.yml"
+    prefix:   /

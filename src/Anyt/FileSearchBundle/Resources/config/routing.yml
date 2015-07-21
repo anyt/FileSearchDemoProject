@@ -1,0 +1,3 @@
+file_search:
+   path:      /
+   defaults:  { _controller: AnytFileSearchBundle:Default:search }

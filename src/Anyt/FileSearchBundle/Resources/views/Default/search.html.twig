@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <form action="{{ path('file_search') }}" method="GET">
+        <input name="keyword" type="text" value="{{ keyword }}" placeholder="Search keyword.."/>
+        <button>Search</button>
+    </form>
+    <hr/>
+    {% if error %}
+        <p><strong>{{ error }}</strong></p>
+    {% endif %}
+    {% if keyword %}
+        {% if files is not empty %}
+            <ul>
+                {% for file in files %}
+                    <li><strong>{{ file.filename }}</strong> ({{ file.realPath }})</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No files found. Try to simplify your search request.</p>
+        {% endif %}
+    {% else %}
+        <p>Type Search keywords and press ENTER for starting search.</p>
+    {% endif %}
+{% endblock %}
